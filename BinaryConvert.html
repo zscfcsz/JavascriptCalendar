@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>BinaryConvert</title>
+
+<script type="text/javascript">
+
+function button1(){
+  var ta = document.getElementById("ta").value;
+
+  var contents = ta.split("\n");
+
+  ta = "";
+
+  contents.map(function(b){
+    ta += String.fromCharCode(parseInt(b, 2));
+  });
+
+  document.getElementById("taResult").value = ta;
+}
+
+function button2(){
+  var taResult = document.getElementById("taResult").value;
+
+  var contents = taResult.split("");
+
+  taResult = "";
+
+  taResult = contents.map((char) => char.charCodeAt(0).toString(2)).join("\n");
+
+  document.getElementById("ta").value = taResult;
+}
+
+</script>
+</head>
+<body>
+
+Binary內容如下(以換行分隔，不以空格分隔):
+<br>
+<textarea id="ta"></textarea>
+
+<br>
+
+<input type="button" onclick="button1()" value="上方Binary換行轉下方內容">
+
+<br>
+
+<input type="button" onclick="button2()" value="下方內容轉上方Binary">
+
+<hr>
+
+轉換結果如下:
+<br>
+<textarea id="taResult"></textarea>
+
+</body>
+</html>
