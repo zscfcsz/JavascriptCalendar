@@ -46,7 +46,66 @@ function redrawCanvas(canvasID, selectObject) {
             var myDate = new Date(year, 0, 1); // 指定年的第一天
             var myDay = myDate.getDay(); // 取得星期: 0 ~ 6
             var myMonth = myDate.getMonth(); // 取得月份: 0 ~ 11
-        // 寫到一半
+            var myYear = myDate.getFullYear(); // 取得年份
+            var myWeek = 0;
+            // 1 年最多 12 個月
+            // 1 個月最多 6 週
+            // 1 週最多 7 天
+            for(var i = 0; i < 12; i++) {
+                this.dateSetting[i] = new Array();
+                for(var j = 0; j < 6; j++) {
+                    this.dateSetting[i][j] = new Array();
+                    for(var k = 0; k < 7; k++) {
+                        if(myYear == year && myMonth == i && myWeek == j && myDay == k) {
+                            this.dateSetting[i][j][k] = myDate.getDate(); // 取得日期: 1 ~ 31
+
+                            myDate.setDate(myDate.getDate() + 1);
+                            myDay = myDate.getDay(); // 取得星期: 0 ~ 6
+                            myMonth = myDate.getMonth(); // 取得月份: 0 ~ 11
+                            myYear = myDate.getFullYear(); // 取得年份
+
+                            if(year < myYear) {
+                                myWeek = 0;
+                            } else if(i < myMonth) {
+                                myWeek = 0;
+                            } else if(k == 6) {
+                                myWeek = myWeek + 1;
+                            }
+                        } else {
+                            this.dateSetting[i][j][k] = "";
+                        }
+                    }
+                }
+            }
+        },
+        initHolidaySetting: function(year) {
+            this.holidays = new Array();
+            var jsonData = {}; // 有空再補設定???
+            for(var mm in jsonData[year]) {
+                for(var dd in jsonData[year][mm]) {
+                    this holidays.push(new Date(year, mm-1, jsonData[year][mm][dd]));
+                }
+            }
+
+            var myDate = new Date(year, 0, 1); // 指定年的第一天
+            var myDay = myDate.getDay(); // 取得星期: 0 ~ 6
+            var myMonth = myDate.getMonth(); // 取得月份: 0 ~ 11
+            var myYear = myDate.getFullYear(); // 取得年份
+            var myWeek = 0;
+            // 1 年最多 12 個月
+            // 1 個月最多 6 週
+            // 1 週最多 7 天
+            for(var i = 0; i < 12; i++) {
+                this.holidaySetting[i] = new Array();
+                for(var j = 0; j < 6; j++) {
+                    this.holidaySetting[i][j] = new Array();
+                    for(var k = 0; k < 7; k++) {
+                        if(myYear == year && myMonth == i && myWeek == j && myDay == k) {
+                            // 寫到一半待補???
+                        }
+                    }
+                }
+            }
         }
     }
 
