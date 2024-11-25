@@ -217,7 +217,7 @@ function redrawCanvas(canvasID, selectObject) {
                         ctx.fillStyle = "rgb(255 192 203 / 90%)";
                     }
                     ctx.fillText(yearData.showDateDesc(t, j-1, i), p_width + monthSize/2, p_height);
-                ctx.fillStyle = "black";
+                    ctx.fillStyle = "black";
                 }
             }
         }
