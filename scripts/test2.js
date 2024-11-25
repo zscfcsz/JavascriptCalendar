@@ -9,6 +9,7 @@ function downloadJPG(canvasID) {
 }
 
 function redrawCanvas(canvasID, selectObject) {
+    alert("redraw: " + canvasID);
     var canvas = document.getElementById(canvasID);
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -56,5 +57,6 @@ function redrawCanvas(canvasID, selectObject) {
 }
 
 function init() {
+    alert("init");
     redrawCanvas('myCanvas', document.getElementById("years"));
 }
