@@ -101,13 +101,57 @@ function redrawCanvas(canvasID, selectObject) {
                     this.holidaySetting[i][j] = new Array();
                     for(var k = 0; k < 7; k++) {
                         if(myYear == year && myMonth == i && myWeek == j && myDay == k) {
-                            // 寫到一半待補???
+                            if(this.holidays.length > 0) {
+                                // 假日自行設定
+                                if(!!this.holidays.find(item => {return item.getTime() == myDate.getTime()})) {
+                                    this.holidaySetting[i][j][k] = true;
+                                } else {
+                                    this.holidaySetting[i][j][k] = false;
+                                }
+                            }
+
+                            myDate.setDate(myDate.getDate() + 1);
+                            myDay = myDate.getDay(); // 取得星期: 0 ~ 6
+                            myMonth = myDate.getMonth(); // 取得月份: 0 ~ 11
+                            myYear = myDate.getFullYear(); // 取得年份
+
+                            if(year < myYear) {
+                                myWeek = 0;
+                            } else if(i < myMonth) {
+                                myWeek = 0;
+                            } else if(k == 6) {
+                                myWeek = myWeek + 1;
+                            }
+                        } else {
+                            this.holidaySetting[i][j][k] = false;
                         }
                     }
                 }
             }
+        },
+        showDateDesc: function(months, weeks, days) {
+            if(months < this.dateSetting.length) {
+                if(weeks < this.dateSetting[months].length) {
+                    if(days < this.dateSetting[months][weeks].length) {
+                        return this.dateSetting[months][weeks][days];
+                    }
+                }
+            }
+            return "";
+        },
+        isHoliday: function(months, weeks, days) {
+            if(months < this.holidaySetting.length) {
+                if(weeks < this.holidaySetting[months]) {
+                    if(days < this.holidaySetting[months][weeks].length) {
+                        return this.holidaySetting[months][weeks][days];
+                    }
+                }
+            }
         }
-    }
+    };
+    yearData.initDateSetting(year);
+    yearData.initHolidaySetting(year);
+    // 以下應該要重打？
 
 
     var year = selectObject.value;
