@@ -151,99 +151,131 @@ function redrawCanvas(canvasID, selectObject) {
     };
     yearData.initDateSetting(year);
     yearData.initHolidaySetting(year);
-    // 以下應該要重打？
 
-
-    var year = selectObject.value;
-    ctx.font = yearSize + "pt Arial";
+    ctx.font = monthSize + "pt Arial";
+    var p_height = headerBlankSize + yearSize + yearMonthBlankSize;
+    // 一 ~ 六月份標題
     ctx.textAlign = "center";
-    ctx.fillText(year, 1800/2, headerBlankSize + yearSize); //置中，上方留空間
-
-    //width 1800: 50 + 20 + 50 ???
-    //height 1200: ???
-
-    //height: 50 + 20 + 50 + 20*7 + 50 + 20*7 + 50 = 500
-    //x width: 50 + 20*7 + 50 + 20*7 + 50 + 20*7 + 50 + 20*7 + 50 + 20*7 + 50 + 20*7 + 50 = 1190
-    //width: 54 + 20*7 + 16 + 20*7 + 16 + 20*7 + 16 + 20*7 + 16 + 20*7 + 16 + 20*7 + 54 = 1028
-    ctx.font = "10pt Arial";
-    ctx.textAlign = "start";
-    var p_height = 70 + 50;
+    for(var k = 0; k < 7; k++) {
+        ctx.fillStyle = "rgb(128 0 128 / 80%)";
+        ctx.font = "bold " + monthSize + "pt Arial";
+        ctx.fillText(months[k], monthLeftBlankSize + (monthSize*7 + daysBlankSize*6 + monthMonthBlankSize)*k + (monthSize*7 + daysBlankSize*6)/2, p_height);
+        ctx.fillStyle = "black";
+        ctx.font = monthSize + "pt Arial";
+    }
+    p_height = p_height + monthSize + weeksBlankSize; // 月份標題高度
     for(var j = 0; j < 7; j++) {
-        p_height = p_height + 20;
-        var p_width = 34; //不知道為何這樣調整才正常???
-        for(var i = 0; i < 7; i++) {
-            p_width = p_width + 20;
-            ctx.fillText('12', p_width, p_height);
+        if(j != 0) {
+            p_height = p_height + monthSize + weeksBlankSize; // 週標題高度
         }
 
-        p_width = p_width + 16;
+        // 一月
+        var p_width = monthLeftBlankSize;
         for(var i = 0; i < 7; i++) {
-            p_width = p_width + 20;
-            ctx.fillText('12', p_width, p_height);
+            if(i != 0) {
+                p_width = p_width + monthSize + daysBlankSize;
+            }
+
+            if(j = 0) {
+                ctx.fillStyle = "rgb(0 0 255 / 70%)";
+                ctx.font = "bold " + monthSize + "pt Arial";
+                ctx.fillText(weeks[i], p_width + monthSize/2, p_height);
+                ctx.fillStyle = "black";
+                ctx.font = monthSize + "pt Arial";
+            } else {
+                if(yearData.isHoliday(0, j-1, i)) {
+                    ctx.fillStyle = "rgb(255 192 203 / 90%)";
+                }
+                ctx.fillText(yearData.showDateDesc(0, j-1, i), p_width + monthSize/2, p_height);
+                ctx.fillStyle = "black";
+            }
         }
 
-        p_width = p_width + 16;
-        for(var i = 0; i < 7; i++) {
-            p_width = p_width + 20;
-            ctx.fillText('12', p_width, p_height);
-        }
+        // 二月 ~ 六月
+        for(var t = 1; t < 6; t++) {
+            p_width = p_width + monthSize + monthMonthBlankSize;
+            for(var i = 0; i < 7; i++) {
+                if(i != 0) {
+                    p_width = p_width + monthSize + daysBlankSize;
+                }
 
-        p_width = p_width + 16;
-        for(var i = 0; i < 7; i++) {
-            p_width = p_width + 20;
-            ctx.fillText('12', p_width, p_height);
-        }
-
-        p_width = p_width + 16;
-        for(var i = 0; i < 7; i++) {
-            p_width = p_width + 20;
-            ctx.fillText('12', p_width, p_height);
-        }
-
-        p_width = p_width + 16;
-        for(var i = 0; i < 7; i++) {
-            p_width = p_width + 20;
-            ctx.fillText('12', p_width, p_height);
+                if(j = 0) {
+                    ctx.fillStyle = "rgb(0 0 255 / 70%)";
+                    ctx.font = "bold " + monthSize + "pt Arial";
+                    ctx.fillText(weeks[i], p_width + monthSize/2, p_height);
+                    ctx.fillStyle = "black";
+                    ctx.font = monthSize + "pt Arial";
+                } else {
+                    if(yearData.isHoliday(t, j-1, i)) {
+                        ctx.fillStyle = "rgb(255 192 203 / 90%)";
+                    }
+                    ctx.fillText(yearData.showDateDesc(t, j-1, i), p_width + monthSize/2, p_height);
+                ctx.fillStyle = "black";
+                }
+            }
         }
     }
 
-    p_height = p_height + 50;
+    p_height = p_height + monthsBlankSize;
+    // 七 ~ 十二月份標題
+    ctx.textAlign = "center";
+    for(var k = 0; k < 7; k++) {
+        ctx.fillStyle = "rgb(128 0 128 / 80%)";
+        ctx.font = "bold " + monthSize + "pt Arial";
+        ctx.fillText(months[k+6], monthLeftBlankSize + (monthSize*7 + daysBlankSize*6 + monthMonthBlankSize)*k + (monthSize*7 + daysBlankSize*6)/2, p_height);
+        ctx.fillStyle = "black";
+        ctx.font = monthSize + "pt Arial";
+    }
+    p_height = p_height + monthSize + weeksBlankSize; // 月份標題高度
     for(var j = 0; j < 7; j++) {
-        p_height = p_height + 20;
-        var p_width = 34; //不知道為何這樣調整才正常???
-        for(var i = 0; i < 7; i++) {
-            p_width = p_width + 20;
-            ctx.fillText('12', p_width, p_height);
+        if(j != 0) {
+            p_height = p_height + monthSize + weeksBlankSize; // 週標題高度
         }
 
-        p_width = p_width + 16;
+        // 七月
+        var p_width = monthLeftBlankSize;
         for(var i = 0; i < 7; i++) {
-            p_width = p_width + 20;
-            ctx.fillText('12', p_width, p_height);
+            if(i != 0) {
+                p_width = p_width + monthSize + daysBlankSize;
+            }
+
+            if(j = 0) {
+                ctx.fillStyle = "rgb(0 0 255 / 70%)";
+                ctx.font = "bold " + monthSize + "pt Arial";
+                ctx.fillText(weeks[i], p_width + monthSize/2, p_height);
+                ctx.fillStyle = "black";
+                ctx.font = monthSize + "pt Arial";
+            } else {
+                if(yearData.isHoliday(6, j-1, i)) {
+                    ctx.fillStyle = "rgb(255 192 203 / 90%)";
+                }
+                ctx.fillText(yearData.showDateDesc(6, j-1, i), p_width + monthSize/2, p_height);
+                ctx.fillStyle = "black";
+            }
         }
 
-        p_width = p_width + 16;
-        for(var i = 0; i < 7; i++) {
-            p_width = p_width + 20;
-            ctx.fillText('12', p_width, p_height);
-        }
+        // 八月 ~ 十二月
+        for(var t = 7; t < 12; t++) {
+            p_width = p_width + monthSize + monthMonthBlankSize;
+            for(var i = 0; i < 7; i++) {
+                if(i != 0) {
+                    p_width = p_width + monthSize + daysBlankSize;
+                }
 
-        p_width = p_width + 16;
-        for(var i = 0; i < 7; i++) {
-            p_width = p_width + 20;
-            ctx.fillText('12', p_width, p_height);
-        }
-
-        p_width = p_width + 16;
-        for(var i = 0; i < 7; i++) {
-            p_width = p_width + 20;
-            ctx.fillText('12', p_width, p_height);
-        }
-
-        p_width = p_width + 16;
-        for(var i = 0; i < 7; i++) {
-            p_width = p_width + 20;
-            ctx.fillText('12', p_width, p_height);
+                if(j = 0) {
+                    ctx.fillStyle = "rgb(0 0 255 / 70%)";
+                    ctx.font = "bold " + monthSize + "pt Arial";
+                    ctx.fillText(weeks[i], p_width + monthSize/2, p_height);
+                    ctx.fillStyle = "black";
+                    ctx.font = monthSize + "pt Arial";
+                } else {
+                    if(yearData.isHoliday(t, j-1, i)) {
+                        ctx.fillStyle = "rgb(255 192 203 / 90%)";
+                    }
+                    ctx.fillText(yearData.showDateDesc(t, j-1, i), p_width + monthSize/2, p_height);
+                ctx.fillStyle = "black";
+                }
+            }
         }
     }
 }
