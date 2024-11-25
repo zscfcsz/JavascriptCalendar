@@ -86,7 +86,33 @@ function redrawCanvas(canvasID, selectObject) {
         },
         initHolidaySetting: function(year) {
             this.holidays = new Array();
-            var jsonData = {}; // 有空再補設定???
+            var jsonData = {"2024":{"01":["01", "06", "07", "13", "14", "20", "21", "27", "28"],
+                                    "02":["03", "04", "08", "09", "10", "11", "12", "13", "14", "18", "24", "25", "28"],
+                                    "03":["02", "03", "09", "10", "16", "17", "23", "24", "30", "31"],
+                                    "04":["04", "05", "06", "07", "13", "14", "20", "21", "27", "28"],
+                                    "05":["01", "04", "05", "11", "12", "18", "19", "25", "26"],
+                                    "06":["01","02","08", "09", "10", "15", "16", "22", "23", "29", "30"],
+                                    "07":["06", "07", "13", "14", "20", "21", "27", "28"],
+                                    "08":["03", "04", "10", "11", "17", "18", "24", "25", "31"],
+                                    "09":["01", "07", "08", "14", "15", "17", "21", "22", "28", "29"],
+                                    "10":["05", "06", "10", "12", "13", "19", "20", "26", "27"],
+                                    "11":["02", "03", "09", "10", "16", "17", "23", "24", "30"],
+                                    "12":["01", "07", "08", "14", "15", "21", "22", "28", "29"]
+                                   },
+                            "2025":{"01":["01", "04", "05", "11", "12", "18", "19", "25", "26", "27", "28", "29", "30", "31"],
+                                    "02":["01", "02", "09", "15", "16", "22", "23", "28"],
+                                    "03":["01", "02", "08", "09", "15", "16", "22", "23", "29", "30"],
+                                    "04":["03", "04", "05", "06", "12", "13", "19", "20", "26", "27"],
+                                    "05":["01", "03", "04", "10", "11", "17", "18", "24", "25", "30", "31"],
+                                    "06":["01", "07", "08", "14", "15", "21",, "22", "28", "29"],
+                                    "07":["05", "06", "12", "13", "19", "20", "26", "27"],
+                                    "08":["02", "03", "09", "10", "16", "17", "23", "24", "30", "31"],
+                                    "09":["06", "07", "13", "14", "20", "21", "27", "28"],
+                                    "10":["04", "05", "06", "10", "11", "12", "18", "19", "25", "26"],
+                                    "11":["01", "02", "08", "09", "15", "16", "22", "23", "29", "30"],
+                                    "12":["06", "07", "13", "14", "20", "21", "27", "28"]
+                                   }
+                           };
             for(var mm in jsonData[year]) {
                 for(var dd in jsonData[year][mm]) {
                     this.holidays.push(new Date(year, mm-1, jsonData[year][mm][dd]));
@@ -110,6 +136,13 @@ function redrawCanvas(canvasID, selectObject) {
                             if(this.holidays.length > 0) {
                                 // 假日自行設定
                                 if(!!this.holidays.find(item => {return item.getTime() == myDate.getTime()})) {
+                                    this.holidaySetting[i][j][k] = true;
+                                } else {
+                                    this.holidaySetting[i][j][k] = false;
+                                }
+                            } else {
+                                // 無設定，假日預設為星期六、日
+                                if(myDay == 0 || myDay == 6) {
                                     this.holidaySetting[i][j][k] = true;
                                 } else {
                                     this.holidaySetting[i][j][k] = false;
@@ -171,7 +204,7 @@ function redrawCanvas(canvasID, selectObject) {
         ctx.font = monthSize + "pt Arial";
     }
     p_height = p_height + monthSize + weeksBlankSize; // 月份標題高度
-    for(var j = 0; j < 7; j++) {
+    for(var j = 0; j < 7; j++) { // 週標題、每月六週
         if(j != 0) {
             p_height = p_height + monthSize + weeksBlankSize; // 週標題高度
         }
@@ -234,7 +267,7 @@ function redrawCanvas(canvasID, selectObject) {
         ctx.font = monthSize + "pt Arial";
     }
     p_height = p_height + monthSize + weeksBlankSize; // 月份標題高度
-    for(var j = 0; j < 7; j++) {
+    for(var j = 0; j < 7; j++) { // 週標題、每月六週
         if(j != 0) {
             p_height = p_height + monthSize + weeksBlankSize; // 週標題高度
         }
@@ -289,5 +322,4 @@ function redrawCanvas(canvasID, selectObject) {
 
 function init() {
     redrawCanvas('myCanvas', document.getElementById("years"));
-    alert("test");
 }
