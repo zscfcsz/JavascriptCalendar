@@ -43,6 +43,7 @@ function redrawCanvas(canvasID, selectObject) {
         myImg.onload = function() {
             ctx.drawImage(myImg, 0, 0, canvasWidth, headerBlankSize - 50);
         }
+        myImg.crossOrigin = 'anonymous';
         myImg.src = imgUrl.value;
     }
     
