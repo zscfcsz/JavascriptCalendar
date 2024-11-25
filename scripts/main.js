@@ -183,7 +183,7 @@ function redrawCanvas(canvasID, selectObject) {
                 p_width = p_width + monthSize + daysBlankSize;
             }
 
-            if(j = 0) {
+            if(j == 0) {
                 ctx.fillStyle = "rgb(0 0 255 / 70%)";
                 ctx.font = "bold " + monthSize + "pt Arial";
                 ctx.fillText(weeks[i], p_width + monthSize/2, p_height);
@@ -206,7 +206,7 @@ function redrawCanvas(canvasID, selectObject) {
                     p_width = p_width + monthSize + daysBlankSize;
                 }
 
-                if(j = 0) {
+                if(j == 0) {
                     ctx.fillStyle = "rgb(0 0 255 / 70%)";
                     ctx.font = "bold " + monthSize + "pt Arial";
                     ctx.fillText(weeks[i], p_width + monthSize/2, p_height);
@@ -246,7 +246,7 @@ function redrawCanvas(canvasID, selectObject) {
                 p_width = p_width + monthSize + daysBlankSize;
             }
 
-            if(j = 0) {
+            if(j == 0) {
                 ctx.fillStyle = "rgb(0 0 255 / 70%)";
                 ctx.font = "bold " + monthSize + "pt Arial";
                 ctx.fillText(weeks[i], p_width + monthSize/2, p_height);
@@ -269,7 +269,7 @@ function redrawCanvas(canvasID, selectObject) {
                     p_width = p_width + monthSize + daysBlankSize;
                 }
 
-                if(j = 0) {
+                if(j == 0) {
                     ctx.fillStyle = "rgb(0 0 255 / 70%)";
                     ctx.font = "bold " + monthSize + "pt Arial";
                     ctx.fillText(weeks[i], p_width + monthSize/2, p_height);
