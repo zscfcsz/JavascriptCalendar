@@ -35,6 +35,12 @@ function redrawCanvas(canvasID, selectObject) {
 
     var monthLeftBlankSize = canvasWidth - (monthSize*7*6 + daysBlankSize*6*6 + monthMonthBlankSize*5) - monthSize; // 月份內容左邊留白的寬度 // 右邊記得留一點寬度空間，font pt 大小與 px 大小還是有一點誤差的
     monthLeftBlankSize = monthLeftBlankSize - 70; // 手動微調位置
+    
+    var year = selectObject.value;
+    ctx.font = "bold " + yearSize + "pt Arial";
+    ctx.textAlign = "center";
+    ctx.fillStyle = "rgb(255 215 0 / 60%)";
+    ctx fillText(year, canvasWidth/2, headerBlankSize + yearSize); // 置中，上方留空間
     ctx.fillStyle = "black";
 
     // 取得指定年的資訊
