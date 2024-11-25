@@ -34,7 +34,7 @@ function redrawCanvas(canvasID, selectObject) {
 
     alert("2");
 
-    var imgUrl = document.getElementById("imgUrl");
+    /*var imgUrl = document.getElementById("imgUrl");
     if(imgUrl.value != "") {
         // 手動微調 50 px 留白
         var myImg = new Image(canvasWidth, headerBlankSize - 50);
@@ -49,7 +49,7 @@ function redrawCanvas(canvasID, selectObject) {
     ctx.textAlign = "center";
     ctx.fillStyle = "rgb(255 215 0 / 60%)";
     ctx fillText(year, canvasWidth/2, headerBlankSize + yearSize); // 置中，上方留空間
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "black";*/
 
     alert("redraw end");
 }
