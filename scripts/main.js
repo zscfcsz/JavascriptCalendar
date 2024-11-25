@@ -89,7 +89,7 @@ function redrawCanvas(canvasID, selectObject) {
             var jsonData = {}; // 有空再補設定???
             for(var mm in jsonData[year]) {
                 for(var dd in jsonData[year][mm]) {
-                    this holidays.push(new Date(year, mm-1, jsonData[year][mm][dd]));
+                    this.holidays.push(new Date(year, mm-1, jsonData[year][mm][dd]));
                 }
             }
 
