@@ -289,5 +289,5 @@ function redrawCanvas(canvasID, selectObject) {
 
 function init() {
     redrawCanvas('myCanvas', document.getElementById("years"));
-    alrert("test");
+    alert("test");
 }
