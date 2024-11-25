@@ -42,14 +42,14 @@ function redrawCanvas(canvasID, selectObject) {
             ctx.drawImage(myImg, 0, 0, canvasWidth, headerBlankSize - 50);
         }
         myImg.src = imgUrl.value;
-    }
+    }*/
     
     var year = selectObject.value;
     ctx.font = "bold " + yearSize + "pt Arial";
     ctx.textAlign = "center";
     ctx.fillStyle = "rgb(255 215 0 / 60%)";
     ctx fillText(year, canvasWidth/2, headerBlankSize + yearSize); // 置中，上方留空間
-    ctx.fillStyle = "black";*/
+    ctx.fillStyle = "black";
 
     alert("redraw end");
 }
