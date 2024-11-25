@@ -2,6 +2,7 @@ function downloadJPG(canvasID) {
     alert(canvasID);
     var downloadLink = document.createElement('a');
     downloadLink.setAttribute('href', document.getElementById(canvasID).toDataURL('application/octet-stream'));
+    alert(downloadLink.getAttribute('href'));
     downloadLink.download = document.getElementById("years").value + "calendar.jpg";
     document.body.appendChild(downloadLink);
     downloadLink.click();
