@@ -153,6 +153,7 @@ function redrawCanvas(canvasID, selectObject) {
                     }
                 }
             }
+            return false;
         }
     };
     yearData.initDateSetting(year);
