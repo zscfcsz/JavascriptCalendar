@@ -50,7 +50,7 @@ function redrawCanvas(canvasID, selectObject) {
     ctx.font = "bold " + yearSize + "pt Arial";
     ctx.textAlign = "center";
     ctx.fillStyle = "rgb(255 215 0 / 60%)";
-    ctx fillText(year, canvasWidth/2, headerBlankSize + yearSize); // 置中，上方留空間
+    ctx.fillText(year, canvasWidth/2, headerBlankSize + yearSize); // 置中，上方留空間
     ctx.fillStyle = "black";
 
     // 取得指定年的資訊
