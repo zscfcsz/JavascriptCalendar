@@ -23,7 +23,7 @@ function redrawCanvas(canvasID, selectObject) {
     var weeks = ["日", "一", "二", "三", "四", "五", "六"];
     var months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
 
-    var headerBlankSize = 400; // 年上方空間留白高度
+    var headerBlankSize = 450; // 年上方空間留白高度，圖片留 400 px，再留白 50 px
     var yearSize = 36; // 年的字型大小
     var yearMonthBlankSize = 100; // 年與月份內容之間的間隔高度
     var monthSize = 16; // 月份內容的字型大小
@@ -35,6 +35,16 @@ function redrawCanvas(canvasID, selectObject) {
 
     var monthLeftBlankSize = canvasWidth - (monthSize*7*6 + daysBlankSize*6*6 + monthMonthBlankSize*5) - monthSize; // 月份內容左邊留白的寬度 // 右邊記得留一點寬度空間，font pt 大小與 px 大小還是有一點誤差的
     monthLeftBlankSize = monthLeftBlankSize - 70; // 手動微調位置
+
+    var imgUrl = document.getElementById("imgUrl");
+    if(imgUrl.value != "") {
+        // 手動微調 50 px 留白
+        var myImg = new Image(canvasWidth, headerBlankSize - 50);
+        myImg.onload = function() {
+            ctx.drawImage(myImg, 0, 0, canvasWidth, headerBlankSize - 50);
+        }
+        myImg.src = imgUrl.value;
+    }
     
     var year = selectObject.value;
     ctx.font = "bold " + yearSize + "pt Arial";
