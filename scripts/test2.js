@@ -1,10 +1,12 @@
 function downloadJPG(canvasID) {
+    alert(canvasID);
     var downloadLink = document.createElement('a');
     downloadLink.setAttribute('href', document.getElementById(canvasID).toDataURL('application/octet-stream'));
     downloadLink.download = document.getElementById("years").value + "calendar.jpg";
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
+    alert("download end");
 }
 
 function redrawCanvas(canvasID, selectObject) {
@@ -52,8 +54,6 @@ function redrawCanvas(canvasID, selectObject) {
     ctx.fillStyle = "rgb(255 215 0 / 60%)";
     ctx.fillText(year, canvasWidth/2, headerBlankSize + yearSize); // 置中，上方留空間
     ctx.fillStyle = "black";
-
-    alert("1");
 
     // 取得指定年的資訊
     let yearData = {
@@ -201,7 +201,6 @@ function redrawCanvas(canvasID, selectObject) {
             return false;
         }
     };
-    alert("2");
     yearData.initDateSetting(year);
     yearData.initHolidaySetting(year);
 
@@ -217,7 +216,6 @@ function redrawCanvas(canvasID, selectObject) {
         ctx.font = monthSize + "pt Arial";
     }
     p_height = p_height + monthSize + weeksBlankSize; // 月份標題高度
-    alert("3");
     for(var j = 0; j < 7; j++) { // 週標題、每月六週
         if(j != 0) {
             p_height = p_height + monthSize + weeksBlankSize; // 週標題高度
@@ -273,7 +271,6 @@ function redrawCanvas(canvasID, selectObject) {
     p_height = p_height + monthsBlankSize;
     // 七 ~ 十二月份標題
     ctx.textAlign = "center";
-    alert("3");
     for(var k = 0; k < 7; k++) {
         ctx.fillStyle = "rgb(128 0 128 / 80%)";
         ctx.font = "bold " + monthSize + "pt Arial";
@@ -333,7 +330,6 @@ function redrawCanvas(canvasID, selectObject) {
             }
         }
     }
-    alert("redraw end");
 }
 
 function init() {
