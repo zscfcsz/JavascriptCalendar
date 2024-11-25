@@ -147,7 +147,7 @@ function redrawCanvas(canvasID, selectObject) {
         },
         isHoliday: function(months, weeks, days) {
             if(months < this.holidaySetting.length) {
-                if(weeks < this.holidaySetting[months]) {
+                if(weeks < this.holidaySetting[months].length) {
                     if(days < this.holidaySetting[months][weeks].length) {
                         return this.holidaySetting[months][weeks][days];
                     }
