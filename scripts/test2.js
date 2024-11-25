@@ -8,14 +8,10 @@ function downloadJPG(canvasID) {
 }
 
 function redrawCanvas(canvasID, selectObject) {
+    alert("1");
     var canvas = document.getElementById(canvasID);
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    /*
-    最後再處理旋轉問題
-    ctx.translate(1200/2, 1800);
-    ctx.rotate(Math.PI*-90/180); */
 
     var canvasWidth = 1800; // 圖片寬度
     var canvasHeight = 1200; // 圖片高度
@@ -35,6 +31,8 @@ function redrawCanvas(canvasID, selectObject) {
 
     var monthLeftBlankSize = canvasWidth - (monthSize*7*6 + daysBlankSize*6*6 + monthMonthBlankSize*5) - monthSize; // 月份內容左邊留白的寬度 // 右邊記得留一點寬度空間，font pt 大小與 px 大小還是有一點誤差的
     monthLeftBlankSize = monthLeftBlankSize - 70; // 手動微調位置
+
+    alert("2");
 
     var imgUrl = document.getElementById("imgUrl");
     if(imgUrl.value != "") {
