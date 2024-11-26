@@ -54,7 +54,7 @@ function redrawCanvas(canvasID, selectObject) {
         fr.onload = function(evt) {
             var myImg = new Image();
             myImg.onload = function() {
-                ctx.drawImage(myImg, 0, canvasWidth, headerBlankSize - 50);
+                ctx.drawImage(myImg, 0, 0, canvasWidth, headerBlankSize - 50);
             }
             myImg.src = evt.target.result;
         }
