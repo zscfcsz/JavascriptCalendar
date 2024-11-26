@@ -37,6 +37,7 @@ function redrawCanvas(canvasID, selectObject) {
     monthLeftBlankSize = monthLeftBlankSize - 70; // 手動微調位置
 
     var imgUrl = document.getElementById("imgUrl");
+    /*以下是其它連結轉圖片，部分連結會擋，有安全性問題，所以另外改成自行上傳圖片的寫法
     if(imgUrl.value != "") {
         // 手動微調 50 px 留白
         var myImg = new Image(canvasWidth, headerBlankSize - 50);
@@ -46,6 +47,7 @@ function redrawCanvas(canvasID, selectObject) {
         myImg.crossOrigin = 'anonymous';
         myImg.src = imgUrl.value;
     }
+    */
     
     var year = selectObject.value;
     ctx.font = "bold " + yearSize + "pt Arial";
