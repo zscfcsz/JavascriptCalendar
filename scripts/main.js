@@ -48,6 +48,17 @@ function redrawCanvas(canvasID, selectObject) {
         myImg.src = imgUrl.value;
     }
     */
+    if(!!imgUrl.files && !!imgUrl.files[0]) {
+        var fr = new FileReader();
+        fr.onload = function(evt) {
+            var myImg = new Image();
+            myImg.onload = function() {
+                ctx.drawImage(myImg, 0, canvasWidth, headerBlankSize - 50);
+            }
+            myImg.src = evt.target.result;
+        }
+        fr.readAsDataURL(imgUrl.files[0]);
+    }
     
     var year = selectObject.value;
     ctx.font = "bold " + yearSize + "pt Arial";
