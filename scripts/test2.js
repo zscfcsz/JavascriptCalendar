@@ -40,7 +40,7 @@ function redrawCanvas(canvasID, selectObject) {
     monthLeftBlankSize = monthLeftBlankSize - 70; // 手動微調位置
 
     var imgUrl = document.getElementById("imgUrl");
-    if(imgUrl.value != "") {
+    /*if(imgUrl.value != "") {
         // 手動微調 50 px 留白
         var myImg = new Image(canvasWidth, headerBlankSize - 50);
         myImg.onload = function() {
@@ -48,6 +48,17 @@ function redrawCanvas(canvasID, selectObject) {
         }
         myImg.crossOrigin = 'anonymous';
         myImg.src = imgUrl.value;
+    }*/
+    if(!!imgUrl.files && !!imgUrl.files[0]) {
+        var fr = new FileReader();
+        fr.onload = function(evt) {
+            var myImg = new Image();
+            myImg.onload = function() {
+                ctx.drawImage(myImg, 0, canvasWidth, headerBlankSize - 50);
+            }
+            myImg.src = evt.target.result;
+        }
+        fr.readAsDataURL(imgUrl.files[0]);
     }
     
     var year = selectObject.value;
