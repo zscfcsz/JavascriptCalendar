@@ -28,7 +28,8 @@ function redrawCanvas(canvasID, selectObject) {
     var weeks = ["日", "一", "二", "三", "四", "五", "六"];
     var months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
 
-    var headerBlankSize = 450; // 年上方空間留白高度，圖片留 400 px，再留白 50 px
+    var whiteBoldSize = 50; // 白邊大小
+    var headerBlankSize = 350 + whiteBoldSize; // 年上方空間留白高度，圖片留 350 px，再留白 50 px
     var yearSize = 36; // 年的字型大小
     var yearMonthBlankSize = 100; // 年與月份內容之間的間隔高度
     var monthSize = 16; // 月份內容的字型大小
