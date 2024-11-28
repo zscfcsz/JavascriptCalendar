@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-<script src="scripts/test2.js?v=15"></script>
+<script src="scripts/test2.js?v=16"></script>
 <head>
 <title>My Calender</title>
 </head>
 <body onload="init()">
-v15
+v16
 <br>
 
 <label for="years">請選擇西元年:</label>
@@ -17,11 +17,11 @@ v15
 
 <br>
 
-<label for="imageUrl">image URL: </label><input type="file" id="imgUrl" name="imgUrl" onchange="redrawCanvas('myCanvas', document.getElementById('years'));">
+<label for="imageUrl">上傳 image(寬固定: 1280 px，高至少: 300 px 以上): </label><input type="file" id="imgUrl" name="imgUrl" onchange="redrawCanvas('myCanvas', document.getElementById('years'));">
 
 <br>
 
-<button type="button" onclick="downloadJPG('myCanvas');">下載jpg(無外框)</button>
+<button type="button" onclick="downloadJPG('myCanvas');">下載jpg(無黑色外框)</button>
 
 <hr>
 
