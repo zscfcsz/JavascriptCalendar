@@ -346,6 +346,13 @@ function redrawCanvas(canvasID, selectObject) {
             }
         }
     }
+
+    // 白邊
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, whiteBoldSize); // 上
+    ctx.fillRect(0, canvas.height - whiteBoldSize, canvas.width, whiteBoldSize); // 下
+    ctx.fillRect(0, 0, whiteBoldSize, canvas.height); // 左
+    ctx.fillRect(canvas.width - whiteBoldSize, 0, whiteBoldSize, canvas.height); // 右
 }
 
 function init() {
