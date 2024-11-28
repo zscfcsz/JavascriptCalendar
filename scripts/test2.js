@@ -14,7 +14,7 @@ function redrawCanvas(canvasID, selectObject) {
     var canvas = document.getElementById(canvasID);
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "rgb(0 128 0 / 50%)"; // "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     /*
@@ -42,6 +42,10 @@ function redrawCanvas(canvasID, selectObject) {
     var monthLeftBlankSize = canvasWidth - (monthSize*7*6 + daysBlankSize*6*6 + monthMonthBlankSize*5) - monthSize; // 月份內容左邊留白的寬度 // 右邊記得留一點寬度空間，font pt 大小與 px 大小還是有一點誤差的
     monthLeftBlankSize = monthLeftBlankSize - 70; // 手動微調位置
 
+    // 圖片背景色
+    ctx.fillStyle = "rgb(112 66 22 / 90%)";
+    ctx.fillRect(0 + whiteBoldSize, 0 + whiteBoldSize, canvasWidth - whiteBoldSize*2, headerBlankSize - whiteBoldSize - 50);
+
     var imgUrl = document.getElementById("imgUrl");
     /*if(imgUrl.value != "") {
         // 手動微調 50 px 留白
@@ -57,7 +61,10 @@ function redrawCanvas(canvasID, selectObject) {
         fr.onload = function(evt) {
             var myImg = new Image();
             myImg.onload = function() {
-                ctx.drawImage(myImg, 0, 0, canvasWidth, headerBlankSize - 50);
+                var imgWidth = 1280; // 圖片寬度裁切固定 1280 px
+                var imgHeightBoldSize = 25; // 圖片高度上下各留 25 px
+                var imgHeight = headerBlankSize - whiteBoldSize - 50 - imgHeightBoldSize*2; // 圖片高度裁切計算結果 300 px，微調間隔 50 px，不要與年度的字貼太近
+                ctx.drawImage(myImg, 0, 0, imgWidth, imgHeight, 0 + whiteBoldSize + (canvasWidth - whiteBoldSize*2 - imgWidth)/2, 0 + whiteBoldSize + imgHeightBoldSize, imgWidth, imgHeight); // 裁切置中
             }
             myImg.src = evt.target.result;
         }
