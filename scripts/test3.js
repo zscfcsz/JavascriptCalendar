@@ -28,6 +28,7 @@ function redrawCanvas(canvasID, selectObject) {
     var months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
 
     var whiteBoldSize = 0; // 白邊大小
+    var blackBoldSize = 1; // 黑框大小
     var headerBlankSize = 30 + 50; // whiteBoldSize; // 年上方空間留白高度，圖片留 350 px，再留白 50 px // 不畫白邊，但留 50 px 緩衝，萬一相片列印另外還要再切白邊
     var yearSize = 72; // 年的字型大小
     var yearMonthBlankSize = 50; // 年與月份內容之間的間隔高度
@@ -254,6 +255,13 @@ function redrawCanvas(canvasID, selectObject) {
     ctx.fillRect(0, canvas.height - whiteBoldSize, canvas.width, whiteBoldSize); // 下
     ctx.fillRect(0, 0, whiteBoldSize, canvas.height); // 左
     ctx.fillRect(canvas.width - whiteBoldSize, 0, whiteBoldSize, canvas.height); // 右
+
+    // 黑框
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, blackBoldSize); // 上
+    ctx.fillRect(0, canvas.height - blackBoldSize, canvas.width, blackBoldSize); // 下
+    ctx.fillRect(0, 0, blackBoldSize, canvas.height); // 左
+    ctx.fillRect(canvas.width - blackBoldSize, 0, blackBoldSize, canvas.height); // 右
 }
 
 function init() {
