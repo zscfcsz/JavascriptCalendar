@@ -219,7 +219,7 @@ function redrawCanvas(canvasID, selectObject) {
 
             // 一 ~ 四月、五 ~ 八月、九 ~ 十二月
             var p_width = monthLeftBlankSize;
-            for(var t = 0 + monthsOneRow*m; t < monthOneRow*(m + 1); t++) {
+            for(var t = 0 + monthsOneRow*m; t < monthsOneRow*(m + 1); t++) {
                 if(t != 0 + monthsOneRow*m) {
                     p_width = p_width + monthSize + monthMonthBlankSize;
                 }
