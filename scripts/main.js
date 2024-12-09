@@ -31,12 +31,12 @@ function getHolidaysJsonData() {
 }
 
 function initYearSelector() {
-    var yearSelector = document.getElementById("years"));
+    var yearSelector = document.getElementById("years");
     for(var i = 2024; i <= 2026; i++) {
         var option = document.createElement("option");
         option.value = i;
         option.text = i;
         yearSelector.appendChild(option);
+        alert(i);
     }
-    alert('test init selector');
 }
