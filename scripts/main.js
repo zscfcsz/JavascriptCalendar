@@ -26,6 +26,7 @@ function getHolidaysJsonData() {
                                   "12":["06", "07", "13", "14", "20", "21", "27", "28"]
                            }
                    };
+    return jsonData;
 }
 
 function initYearSelector() {
