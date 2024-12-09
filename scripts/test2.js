@@ -205,7 +205,7 @@ function redrawCanvas(canvasID, selectObject) {
     var p_height = headerBlankSize + yearSize + yearMonthBlankSize;
     // 一 ~ 六月份標題
     ctx.textAlign = "center";
-    for(var k = 0; k < 7; k++) {
+    for(var k = 0; k < 6; k++) {
         ctx.fillStyle = "rgb(128 0 128 / 80%)";
         ctx.font = "bold " + monthSize + "pt Arial";
         ctx.fillText(months[k], monthLeftBlankSize + (monthSize*7 + daysBlankSize*6 + monthMonthBlankSize)*k + (monthSize*7 + daysBlankSize*6)/2, p_height);
@@ -268,7 +268,7 @@ function redrawCanvas(canvasID, selectObject) {
     p_height = p_height + monthsBlankSize;
     // 七 ~ 十二月份標題
     ctx.textAlign = "center";
-    for(var k = 0; k < 7; k++) {
+    for(var k = 0; k < 6; k++) {
         ctx.fillStyle = "rgb(128 0 128 / 80%)";
         ctx.font = "bold " + monthSize + "pt Arial";
         ctx.fillText(months[k+6], monthLeftBlankSize + (monthSize*7 + daysBlankSize*6 + monthMonthBlankSize)*k + (monthSize*7 + daysBlankSize*6)/2, p_height);
