@@ -26,7 +26,6 @@ function getHolidaysJsonData() {
                                   "12":["06", "07", "13", "14", "20", "21", "27", "28"]
                            }
                    };
-    alert('test holiday');
     return jsonData;
 }
 
@@ -37,6 +36,5 @@ function initYearSelector() {
         option.value = i;
         option.text = i;
         yearSelector.appendChild(option);
-        alert(i);
     }
 }
