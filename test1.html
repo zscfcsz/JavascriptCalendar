@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<script src="scripts/main.js"></script>
+<head>
+<title>My Calender</title>
+</head>
+<body onload="init()">
+
+<label for="years">請選擇西元年:</label>
+<select name="years" id="years" onchange="redrawCanvas('myCanvas', this);">
+    <option value="2024">2024</option>
+    <option value="2025">2025</option>
+    <option value="2026">2026</option>
+</select>
+
+<br>
+
+<label for="imageUrl">image URL: </label><input type="file" id="imgUrl" name="imgUrl" onchange="redrawCanvas('myCanvas', document.getElementById('years'));">
+
+<br>
+
+<button type="button" onclick="downloadJPG('myCanvas');">下載jpg(無外框)</button>
+
+<hr>
+
+<!-- <canvas id="myCanvas" width="1200px" height="1800px" style="border:1px solid #000000;"></canvas> -->
+<canvas id="myCanvas" width="1800px" height="1200px" style="border:1px solid #000000;"></canvas>
+</body>
+</html>
