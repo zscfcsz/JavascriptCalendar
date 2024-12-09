@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<script src="scripts/main.js"></script>
+<script src="scripts/test4.js"></script>
+<head>
+<title>My Calender4</title>
+</head>
+<body onload="init()">
+無圖片上傳功能，滿版無預留空間給白邊切，無黑框
+<br>
+
+<label for="years">請選擇西元年:</label>
+<select name="years" id="years" onchange="redrawCanvas('myCanvas', this);">
+</select>
+
+<br>
+
+<button type="button" onclick="downloadJPG('myCanvas');">下載png</button>
+
+<hr>
+
+<canvas id="myCanvas" width="1800px" height="1200px" style="border:0px solid #000000;"></canvas>
+</body>
+</html>
