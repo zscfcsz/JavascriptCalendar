@@ -13,6 +13,8 @@ function button1() {
     qrcode.make();
 
     var canvas = document.getElementById("myCanvas");
+    canvas.width = qrcode.getModuleCount();
+    canvas.height = qrcode.getModuleCount();
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -52,7 +54,7 @@ function downloadPNG(canvasID) {
 
 <hr>
 
-<canvas id="myCanvas" width="177px" height="177px"></canvas>
+<canvas id="myCanvas" width="256px" height="256px"></canvas>
 
 </body>
 </html>
