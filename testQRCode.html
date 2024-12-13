@@ -7,9 +7,9 @@
 <script>
 
 function button1() {
+    alert(QRErrorCorrectLevel.H);
     var ta = document.getElementById("ta").value;
     var qrcode = new QRCode(40, QRErrorCorrectLevel.H);
-    alert(qrcode);
     qrcode.addData(ta);
     qrcode.make();
 
