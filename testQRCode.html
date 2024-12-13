@@ -26,6 +26,15 @@ function button1() {
     }
 }
 
+function downloadPNG(canvasID) {
+    var downloadLink = document.createElement('a');
+    downloadLink.setAttribute('href', document.getElementById(canvasID).toDataURL('application/octet-stream'));
+    downloadLink.download = "qrcode.png";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+}
+
 </script>
 
 </head>
@@ -36,6 +45,10 @@ function button1() {
 <br>
 
 <input type="button" onclick="button1()" value="Convert QRcode">
+
+<br>
+
+<input type="button" onclick="downloadPNG("myCanvas")" value="下載PNG">
 
 <hr>
 
