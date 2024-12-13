@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<script src="scripts/qrcode.js"></script>
+<head>
+<title>My QRcode</title>
+
+<script>
+
+function button() {
+    var ta = document.getElementById("ta").value;
+    var qrcode = new QRCode(40, QRErrorCorrectLevel.H);
+    qrcode.addData(ta);
+    qrcode.make();
+
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "black";
+    for(var i = 0; i < qrcode.getModuleCount(); i++) {
+        for(var j = 0; j < qrcode.getModuleCount(); j++) {
+            if(qrcode.isDark(i, j)) {
+                ctx.fillRect(j, i, 1, 1);
+            }
+        }
+    }
+}
+
+</script>
+
+</head>
+<body>
+
+<textarea id="ta" row="10" cols="100">A</textarea>
+
+<br>
+
+<input type="button" onclick="button1()" value="Convert QRcode">
+
+<hr>
+
+<canvas id="myCanvas" width="177px" height="177px"></canvas>
+
+</body>
+</html>
