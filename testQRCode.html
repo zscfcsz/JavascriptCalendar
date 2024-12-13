@@ -7,11 +7,6 @@
 <script>
 
 function button1() {
-    try {
-        alert(QRErrorCorrectLevel.H);
-    } catch(erroe) {
-        alert(error);
-    }
     var ta = document.getElementById("ta").value;
     var qrcode = new QRCode(-1, QRErrorCorrectLevel.H);
     qrcode.addData(ta);
