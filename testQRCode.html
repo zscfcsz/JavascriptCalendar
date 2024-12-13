@@ -8,8 +8,8 @@
 
 function button1() {
     var ta = document.getElementById("ta").value;
-    alert(ta);
     var qrcode = new QRCode(40, QRErrorCorrectLevel.H);
+    alert(qrcode);
     qrcode.addData(ta);
     qrcode.make();
 
