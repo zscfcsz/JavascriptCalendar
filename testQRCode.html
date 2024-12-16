@@ -6,15 +6,47 @@
 
 <script>
 
-function button1() {
-    var ta = document.getElementById("ta").value;
-    var qrcode = new QRCode(-1, QRErrorCorrectLevel.H);
-    qrcode.addData(ta);
+function utf16to8(str) {
+    var out, i, len, c;
+
+    out = "";
+    len = str.length;
+    for(i = 0; i < len; i++) {
+        c = str.charCodeAt(i);
+        if((c >= 0x0001) && ( c <= 0x007F)) {
+            out += str.charAt(i);
+        } else if(c > 0x07FF) {
+            out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+            out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
+            out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+        } else {
+            out += String.fromCharCode(0xc0 | ((c >> 6) & 0x1F));
+            out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+        }
+    }
+    
+    return out;
+}
+
+var tas;
+
+function genPicsQRCode(selectObject){
+    var optionValue = selectObject.value;
+    var ta2 = document.getElementById("ta2");
+    ta2.value = tas[optionValue];
+    
+    var qrcode = new QRCode(-1, QRErrorCorrectLevel.M);
+    qrcode.addData(utf16to8(ta2.value));
     qrcode.make();
+    
+    var p = Math.floor(177 / qrcode.getModuleCount()) - 1; // 一格占多少像素，大概抓一下再微調
+    if(p < 1) {
+        p = 1;
+    }
 
     var canvas = document.getElementById("myCanvas");
-    canvas.width = qrcode.getModuleCount();
-    canvas.height = qrcode.getModuleCount();
+    canvas.width = qrcode.getModuleCount()*p;
+    canvas.height = qrcode.getModuleCount()*p;
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -22,10 +54,35 @@ function button1() {
     for(var i = 0; i < qrcode.getModuleCount(); i++) {
         for(var j = 0; j < qrcode.getModuleCount(); j++) {
             if(qrcode.isDark(i, j)) {
-                ctx.fillRect(j, i, 1, 1);
+                ctx.fillRect(j*p, i*p, p, p);
             }
         }
     }
+}
+
+function button1(){
+    var ta = document.getElementById("ta").value;
+    
+    // 中文大概取 700 個字較安全
+    var wordsLength = 700;
+    tas = [];
+    for(var i = 0; i < ta.length; i += wordsLength) {
+        tas.push(ta.slice(i, i + wordsLength));
+    }
+
+    var pics = document.getElementById("pics");
+    for(var i = pics.options.length - 1; i >= 0; i--) {
+        pics.remove(i);
+    }
+    var option;
+    for(var i = 0; i < tas.length; i++) {
+        option = document.createElement("option");
+        option.text = i;
+        option.value = i;
+        pics.add(option);
+    }
+
+    genPicsQRCode(document.getElementById("pics"));
 }
 
 function downloadPNG(canvasID) {
@@ -42,11 +99,11 @@ function downloadPNG(canvasID) {
 </head>
 <body>
 
-<textarea id="ta" row="10" cols="100">A</textarea>
+<textarea id="ta" row="10" cols="100">測試0</textarea>
 
 <br>
 
-<input type="button" onclick="button1()" value="Convert QRcode">
+<input type="button" onclick="button1()" value="轉 QRcode">
 
 <br>
 
@@ -54,7 +111,19 @@ function downloadPNG(canvasID) {
 
 <hr>
 
-<canvas id="myCanvas" width="256px" height="256px"></canvas>
+<label for="pics">請選擇第N張:</label>
+<select name="pics" id="pics" onchange="genPicsQRCode(this);">
+</select>
+
+<br>
+
+<textarea id="ta2" row="10" cols="100"></textarea>
+
+<br>
+
+<div style="margin-left:800px;">
+    <canvas id="myCanvas" width="256px" height="256px"></canvas>
+</div>
 
 </body>
 </html>
