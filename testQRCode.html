@@ -49,6 +49,8 @@ function genPicsQRCode(selectObject){
     canvas.height = qrcode.getModuleCount()*p;
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = "black";
     for(var i = 0; i < qrcode.getModuleCount(); i++) {
@@ -124,6 +126,9 @@ function downloadPNG(canvasID) {
 <div style="margin-left:800px;">
     <canvas id="myCanvas" width="256px" height="256px"></canvas>
 </div>
+
+<br>
+參考來源 https://github.com/jeromeetienne/jquery-qrcode/blob/master/src/qrcode.js
 
 </body>
 </html>
