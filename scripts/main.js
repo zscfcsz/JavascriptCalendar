@@ -44,7 +44,7 @@ function getHolidaysJsonData() {
 
 function initYearSelector() {
     var yearSelector = document.getElementById("years");
-    for(var i = 2024; i <= 2026; i++) {
+    for(var i = 2025; i <= 2026; i++) {
         var option = document.createElement("option");
         option.value = i;
         option.text = i;
