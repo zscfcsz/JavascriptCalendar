@@ -50,4 +50,5 @@ function initYearSelector() {
         option.text = i;
         yearSelector.appendChild(option);
     }
+    yearSelector.value = 2026;
 }
