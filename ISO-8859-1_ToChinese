@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ISO-8859-1中文處理</title>
+
+<script type="text/javascript">
+
+function button1(){
+  // ISO-8859-1->中文
+  var ta = document.getElementById("ta").value;
+
+  var contents = ta.split("\n");
+  ta = "";
+  for (var i = 0; i < contents.length; i++) {
+    ta = ta + JSON.parse('"' + contents[i] + '"');
+
+    if (i != contents.length - 1) {
+      ta = ta + "\n";
+    }
+  }
+
+  document.getElementById("taResult").value = ta;
+}
+
+function button2(){
+  // 中文->ISO-8859-1
+  var ta = document.getElementById("ta").value;
+
+  var contents = ta.split("\n");
+  ta = "";
+  for (var i = 0; i < contents.length; i++) {
+    ta = ta + contents[i].split('').map(char => {
+      var unicode = char.charCodeAt(0).toString(16);
+
+      while (unicode.length < 4) {
+        unicode = '0' + unicode;
+      }
+
+      return '\\u' + unicode;
+    }).join('');
+
+    if (i != contents.length - 1) {
+      ta = ta + "\n";
+    }
+  }
+
+  document.getElementById("taResult").value = ta;
+}
+
+</script>
+
+</head>
+<body>
+
+<textarea id="ta" rows="10" cols="100">
+</textarea>
+
+<br>
+
+<input type="button" onclick="button1()" value="ISO-8859-1->中文">
+<input type="button" onclick="button2()" value="中文->ISO-8859-1">
+
+<hr>
+
+轉換結果如下:
+<br>
+<textarea id="taResult" rows="10" cols="100">
+</textarea>
+
+</body>
+</html>
