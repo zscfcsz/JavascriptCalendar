@@ -30,7 +30,7 @@ function getHolidaysJsonData() {
                                   "03":["01", "07", "08", "14", "15", "21", "22", "28", "29"],
                                   "04":["03", "04", "05", "06", "11", "12", "18", "19", "25", "26"],
                                   "05":["01", "02", "03", "09", "10", "16", "17", "23", "24", "30", "31"],
-                                  "06":["06", "07", "13", "14", "19", "20",, "21", "27", "28"],
+                                  "06":["06", "07", "13", "14", "19", "20", "21", "27", "28"],
                                   "07":["04", "05", "11", "12", "18", "19", "25", "26"],
                                   "08":["01", "02", "08", "09", "15", "16", "22", "23", "29", "30"],
                                   "09":["05", "06", "12", "13", "19", "20", "25", "26", "27", "28"],
@@ -57,11 +57,11 @@ function getHolidaysJsonData() {
 
 function initYearSelector() {
     var yearSelector = document.getElementById("years");
-    for(var i = 2025; i <= 2026; i++) {
+    for(var i = 2026; i <= 2027; i++) {
         var option = document.createElement("option");
         option.value = i;
         option.text = i;
         yearSelector.appendChild(option);
     }
-    yearSelector.value = 2026;
+    yearSelector.value = 2027;
 }
